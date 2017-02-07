@@ -1,3 +1,12 @@
-<h1>
-  {{title}}
-</h1>
+<nav>
+    <a routerLink="">home</a>
+    <a routerLink="/create">create</a>
+    <a routerLink="/edit">edit</a>
+    <a routerLink="/list">list</a>
+</nav>
+<h1> 
+  {{title}} 
+</h1> 
+<div>
+    <router-outlet></router-outlet>
+</div>
