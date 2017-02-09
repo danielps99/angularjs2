@@ -35,5 +35,6 @@ headers.append('Access-Control-Allow-Origin', '*')
    //return this.http.post(`https://localhost:8443/access/authenticate?username=root&password=ewqiop321`, params)
       .map((res: Response) => res.json());
   }
+  
 
 }
