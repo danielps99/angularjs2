@@ -1,4 +1,16 @@
-<p>
-  list works!
-</p>
-{{retorno | json}}
+<h2>{{title}}</h2>
+<table border="1px">
+  <thead>
+  <tr>
+    <th>Descrição</th>
+    <th colspan="2">Ação</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of entityes">
+      <td>{{item.descricao}}</td>
+      <td><a href="/produto/edit/{{item.id}}">Editar</a></td>
+      <td><button (click)="delete(item)">Excluir</button></td>
+    </tr>
+  </tbody>
+</table>

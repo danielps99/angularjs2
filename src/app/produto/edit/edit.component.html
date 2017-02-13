@@ -1,3 +1,5 @@
-<p>
-  edit works!
-</p>
+<h2>{{title}}</h2>
+<label for="descricao">descricao</label>
+<input type="text" [(ngModel)]="entity.descricao">
+
+<button (click)="save()" >save</button>

@@ -1,9 +1,4 @@
-<label for="id">id</label>
-<input type="text" [(ngModel)]="id">
-
+<h2>{{title}}</h2>
 <label for="descricao">descricao</label>
-<input type="text" [(ngModel)]="descricao">
-
+<input type="text" [(ngModel)]="entity.descricao">
 <button (click)="create()" >create</button>
-
-{{retorno | json}}

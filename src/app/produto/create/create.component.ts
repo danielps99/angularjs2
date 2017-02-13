@@ -1,5 +1,6 @@
 import { ProdutoService } from './../produto.service';
 import { Component, OnInit } from '@angular/core';
+import { UUID } from 'angular2-uuid';
 
 @Component({
   selector: 'app-create',
@@ -8,17 +9,26 @@ import { Component, OnInit } from '@angular/core';
   providers: [ProdutoService]
 })
 export class CreateComponent {
-  retorno: any = {};
-  id: String = '';
-  descricao: String = '';
+  title = 'Criar produto';
+  entity: any = this.initEntity();
 
   constructor(private produtoService: ProdutoService) { }
 
   create() {
     const command = {
-      id: this.id,
-      descricao: this.descricao
+      id: UUID.UUID(),
+      descricao: this.entity.descricao
     };
-    this.produtoService.create(command).subscribe(data => this.retorno = data);
+
+    this.produtoService.create(command).subscribe(data => {
+      alert('Salvo com sucesso!');
+      this.entity = this.initEntity();
+    });
+  }
+
+  private initEntity() {
+    return {
+      descricao: ''
+    };
   }
 }

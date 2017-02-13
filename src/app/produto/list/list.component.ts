@@ -1,5 +1,5 @@
-import { ProdutoService } from './../produto.service';
 import { Component, OnInit } from '@angular/core';
+import { ProdutoService } from './../produto.service';
 
 @Component({
   selector: 'app-list',
@@ -8,11 +8,25 @@ import { Component, OnInit } from '@angular/core';
   providers: [ProdutoService]
 })
 export class ListComponent implements OnInit {
-retorno: any = {};
+  title = 'Lista de produtos';
+  entityes: any = [];
   constructor(private produtoService: ProdutoService) { }
 
   ngOnInit() {
-    this.produtoService.getAll().subscribe( data => this.retorno = data );
+    this.loadEntityes();
   }
 
+  delete(entity) {
+    if (confirm('Deseja deletar ' + entity.descricao + '?')) {
+      this.produtoService.delete(entity.id).subscribe(
+        data => {
+          this.loadEntityes();
+        }
+      );
+    }
+  }
+
+  private loadEntityes() {
+    this.produtoService.getAll().subscribe(dataGetAll => this.entityes = dataGetAll);
+  }
 }

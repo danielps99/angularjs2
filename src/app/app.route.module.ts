@@ -7,7 +7,7 @@ import { NgModule } from '@angular/core';
 const appRoute = [
     { path: '', component: ListComponent },
     { path: 'produto/create', component: CreateComponent },
-    { path: 'produto/edit', component: EditComponent }];
+    { path: 'produto/edit/:id', component: EditComponent }];
 @NgModule({
     imports: [RouterModule.forRoot(appRoute)],
     exports: [RouterModule]
