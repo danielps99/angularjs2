@@ -1,16 +1,16 @@
 <h2>{{title}}</h2>
-<table border="1px">
+<table class="table table-hover">
   <thead>
   <tr>
-    <th>Descrição</th>
-    <th colspan="2">Ação</th>
+    <th class="col-md-8">Descrição</th>
+    <th class="col-md-4 text-center" colspan="2">Ação</th>
   </tr>
   </thead>
   <tbody>
     <tr *ngFor="let item of entityes">
       <td>{{item.descricao}}</td>
-      <td><a href="/produto/edit/{{item.id}}">Editar</a></td>
-      <td><button (click)="delete(item)">Excluir</button></td>
+      <td><a class="btn btn-warning" href="/produto/edit/{{item.id}}">Editar</a></td>
+      <td><button class="btn btn-danger" (click)="delete(item)">Excluir</button></td>
     </tr>
   </tbody>
 </table>
