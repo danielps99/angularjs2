@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 const appRoute = [
-    { path: '', component: ListComponent },
+    { path: 'produto/list', component: ListComponent },
     { path: 'produto/create', component: CreateComponent },
     { path: 'produto/edit/:id', component: EditComponent }];
 @NgModule({
