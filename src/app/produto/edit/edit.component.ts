@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewContainerRef, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { ProdutoService } from './../produto.service';
 
@@ -10,22 +11,24 @@ import { ProdutoService } from './../produto.service';
   styleUrls: ['./edit.component.css'],
   providers: [ProdutoService]
 })
-export class EditComponent implements OnInit {
+export class EditComponent implements OnInit, OnDestroy {
   title = 'Editar produto';
   inscricao: Subscription;
   entity: any = {};
 
-  constructor(private route: ActivatedRoute,
-    private router: Router, private produtoService: ProdutoService) { }
+  constructor(private toastr: ToastsManager, private vRef: ViewContainerRef, private route: ActivatedRoute,
+    private router: Router, private produtoService: ProdutoService) {
+    this.toastr.setRootViewContainerRef(vRef);
+  }
 
-    save() {
+  save() {
     const command = {
       id: this.entity.id,
       descricao: this.entity.descricao
     };
 
     this.produtoService.update(command).subscribe(data => {
-      alert('Salvo com sucesso!');
+      this.toastr.success(`${data.json().descricao} salvo com sucesso!`);
     });
   }
 

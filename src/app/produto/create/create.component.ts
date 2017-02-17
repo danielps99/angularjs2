@@ -13,7 +13,7 @@ export class CreateComponent {
   title = 'Criar produto';
   entity: any = this.initEntity();
 
-  constructor(public toastr: ToastsManager, vRef: ViewContainerRef, private produtoService: ProdutoService) {
+  constructor(private toastr: ToastsManager, private vRef: ViewContainerRef, private produtoService: ProdutoService) {
     this.toastr.setRootViewContainerRef(vRef);
   }
 
@@ -24,12 +24,7 @@ export class CreateComponent {
     };
 
     this.produtoService.create(command).subscribe(data => {
-      // alert('Salvo com sucesso!');
-
-      this.toastr.success('You are awesome!', 'Success!', { toastLife: 2000 });
-
-      this.toastr.info('<span style="background-color: yellow; color:red">Message in red.</span>', null, { enableHTML: true });
-
+      this.toastr.success(`${data.json().descricao} salvo com sucesso!`);
       this.entity = this.initEntity();
     });
   }
