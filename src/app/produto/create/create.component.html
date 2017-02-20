@@ -2,3 +2,11 @@
 <label for="descricao">descricao</label>
 <input type="text" [(ngModel)]="entity.descricao">
 <button class="btn btn-primary" (click)="create()" >create</button>
+
+<p>This typeahead shows a hint when the input matches because the default values have been customized.</p>
+
+<input type="text" class="form-control" [(ngModel)]="model" [inputFormatter]="inputFormatter"  [resultFormatter]="resultFormatter"  [ngbTypeahead]="search"/>
+
+
+--->>{{text$}}
+MODEL {{model | json}}
