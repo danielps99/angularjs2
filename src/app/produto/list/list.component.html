@@ -1,14 +1,18 @@
 <h2>{{title}}</h2>
 <table class="table table-hover">
   <thead>
-  <tr>
-    <th class="col-md-8">Descrição</th>
-    <th class="col-md-4 text-center" colspan="2">Ação</th>
-  </tr>
+    <tr>
+      <th class="col-md-4">Descrição</th>
+      <th class="col-md-2">preço</th>
+      <th class="col-md-4">Categoria</th>
+      <th class="col-md-2 text-center" colspan="2">Ação</th>
+    </tr>
   </thead>
   <tbody>
     <tr *ngFor="let item of entityes">
       <td>{{item.descricao}}</td>
+      <td>{{item.preco | currency:'BRL':true}}</td>
+      <td>{{item.categoria.descricao}}</td>
       <td><a class="btn btn-warning" href="/produto/edit/{{item.id}}">Editar</a></td>
       <td><button class="btn btn-danger" (click)="delete(item)">Excluir</button></td>
     </tr>

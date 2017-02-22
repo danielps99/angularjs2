@@ -1,14 +1,14 @@
-import { ProdutoService } from './../produto.service';
-import { CategoriaService } from './../categoria.service';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { NgbTypeaheadConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+
+import { ProdutoService } from './../produto.service';
+import { CategoriaService } from './../categoria.service';
 
 @Component({
   selector: 'app-create',
@@ -45,7 +45,9 @@ export class CreateComponent {
   create() {
     const command = {
       id: UUID.UUID(),
-      descricao: this.entity.descricao
+      descricao: this.entity.descricao,
+      categoria: this.entity.categoria,
+      preco: this.entity.preco
     };
 
     this.produtoService.create(command).subscribe(data => {

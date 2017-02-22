@@ -5,8 +5,12 @@
 </div>
 <div class="form-group">
     <label for="descricao" class="control-label">Categoria</label>
-    <input type="text" class="form-control" [(ngModel)]="categoria" [inputFormatter]="inputFormatter" [resultFormatter]="resultFormatter"
+    <input type="text" class="form-control" [(ngModel)]="entity.categoria" [inputFormatter]="inputFormatter" [resultFormatter]="resultFormatter"
         [ngbTypeahead]="findTerm" placeholder="Escolha categoria" />
-    <p>termo / selecionado: {{categoria | json}}</p>
 </div>
+<div class="form-group">
+    <label for="preco" class="control-label">preço</label>
+    <input class="form-control" type="text" [(ngModel)]="entity.preco">
+</div>
+
 <button class="btn btn-primary" (click)="create()">create</button>
