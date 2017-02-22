@@ -8,9 +8,7 @@ export class CategoriaService {
 
   constructor(private http: Http) { }
 
-  findByParam(param: string) {
-     console.log(param);
-    return this.http.get(`http://localhost:8080/categoria/${param}`).map((res: Response) => res.json());
+  findByParameter(parameter: string) {
+    return this.http.get(`http://localhost:8080/categoria/${parameter}`).map((res: Response) => res.json());
   }
-
 }

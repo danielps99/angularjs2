@@ -3,15 +3,12 @@ import { CategoriaService } from './../categoria.service';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-
-import { Observable } from 'rxjs/Observable';
 import { NgbTypeaheadConfig } from '@ng-bootstrap/ng-bootstrap';
 
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
-
 
 @Component({
   selector: 'app-create',
@@ -27,24 +24,24 @@ export class CreateComponent {
     this.toastr.setRootViewContainerRef(vRef);
   }
 
-  search = (text$: Observable<string>) =>
+  findTerm = (text$: Observable<string>) =>
     text$
       .debounceTime(150).distinctUntilChanged()
-      .switchMap(data => {
-        return this.categoriaService.findByParam(data)
+      .switchMap(parameter => {
+        if (parameter == "") {
+          return [];
+        }
+        return this.categoriaService.findByParameter(parameter)
       });
 
-  inputFormatter(a: any) {
-    //console.log("inputFormatter", a);
-    return a.descricao;
-
-    ;
+  inputFormatter(categoria: any) {
+    return categoria.descricao;
   }
 
-  resultFormatter(a: any) {
-    //console.log("resultFormatter", a);
-    return a.descricao;
+  resultFormatter(categoria: any) {
+    return categoria.descricao;
   }
+
   create() {
     const command = {
       id: UUID.UUID(),
