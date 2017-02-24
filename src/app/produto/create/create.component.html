@@ -1,16 +1,39 @@
 <h2>{{title}}</h2>
-<div class="form-group">
-    <label for="descricao" class="control-label">descricao</label>
-    <input class="form-control" type="text" [(ngModel)]="entity.descricao">
-</div>
-<div class="form-group">
-    <label for="descricao" class="control-label">Categoria</label>
-    <input type="text" class="form-control" [(ngModel)]="entity.categoria" [inputFormatter]="inputFormatter" [resultFormatter]="resultFormatter"
-        [ngbTypeahead]="findTerm" placeholder="Escolha categoria" />
-</div>
-<div class="form-group">
-    <label for="preco" class="control-label">preço</label>
-    <input class="form-control" type="text" [(ngModel)]="entity.preco">
-</div>
 
-<button class="btn btn-primary" (click)="create()">create</button>
+<form name="form" role="form" (ngSubmit)="changePassword()" #heroForm="ngForm">
+
+    <div class="form-group">
+        <label for="descricao" class="control-label">descricao</label>
+        <input class="form-control" type="text" [(ngModel)]="entity.descricao" required minlength="4" maxlength="24" name="descricao"
+            #descricao="ngModel">
+    </div>
+    <div *ngIf="descricao.errors && (descricao.dirty || descricao.touched)" class="alert alert-danger">
+        <div [hidden]="!descricao.errors.required">
+            descricao is required
+        </div>
+        <div [hidden]="!descricao.errors.minlength">
+            descricao must be at least 4 characters long.
+        </div>
+        <div [hidden]="!descricao.errors.maxlength">
+            descricao cannot be more than 24 characters long.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="categoria" class="control-label">Categoria</label>
+        <input name="categoria" type="text" class="form-control" [(ngModel)]="entity.categoria" [inputFormatter]="inputFormatter"
+            [resultFormatter]="resultFormatter" [ngbTypeahead]="findTerm" placeholder="Escolha categoria" required #categoria="ngModel"/>
+    </div>
+    <div *ngIf="categoria.errors && (categoria.dirty || categoria.touched)" class="alert alert-danger">
+        <div [hidden]="!categoria.errors.required">
+            categoria is required
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="preco" class="control-label">preço</label>
+        <input name="preco" class="form-control" type="text" [(ngModel)]="entity.preco">
+    </div>
+
+    <button [disabled]="!heroForm.form.valid" class="btn btn-primary" (click)="create()">create</button>
+</form>
