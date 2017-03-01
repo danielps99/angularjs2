@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { CreateComponent } from './produto/create/create.component';
 import { ListComponent } from './produto/list/list.component';
 import { EditComponent } from './produto/edit/edit.component';
-
+import { SharedModule } from './shared/shared.module';
 const toastOptions: any = {
   closeButton: false,
   debug: false,
@@ -42,7 +42,8 @@ const toastOptions: any = {
     HttpModule,
     AppRouteModule,
     NgbModule.forRoot(),
-    ToastModule.forRoot(toastOptions)
+    ToastModule.forRoot(toastOptions),
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
