@@ -57,11 +57,11 @@ export class EditComponent implements OnInit, OnDestroy {
     text$
       .debounceTime(150).distinctUntilChanged()
       .switchMap(parameter => {
-        if (parameter == "") {
+        if (parameter === '') {
           return [];
         }
-        return this.categoriaService.findByParameter(parameter)
-      });
+        return this.categoriaService.findByParameter(parameter);
+      })
 
   inputFormatter(categoria: any) {
     return categoria.descricao;

@@ -1,6 +1,6 @@
 <h2>{{title}}</h2>
 
-<form name="form" role="form" (ngSubmit)="changePassword()" #heroForm="ngForm">
+<form name="form" role="form" #entityForm="ngForm">
 
     <div class="form-group">
         <label for="descricao" class="control-label">descricao</label>
@@ -22,7 +22,8 @@
     <div class="form-group">
         <label for="categoria" class="control-label">Categoria</label>
         <input name="categoria" type="text" class="form-control" [(ngModel)]="entity.categoria" [inputFormatter]="inputFormatter"
-            [resultFormatter]="resultFormatter" [ngbTypeahead]="findTerm" placeholder="Escolha categoria" required #categoria="ngModel"/>
+            [resultFormatter]="resultFormatter" [ngbTypeahead]="findTerm" placeholder="Escolha categoria" required #categoria="ngModel"
+        />
     </div>
     <div *ngIf="categoria.errors && (categoria.dirty || categoria.touched)" class="alert alert-danger">
         <div [hidden]="!categoria.errors.required">
@@ -35,5 +36,5 @@
         <input name="preco" class="form-control" type="text" [(ngModel)]="entity.preco">
     </div>
 
-    <button [disabled]="!heroForm.form.valid" class="btn btn-primary" (click)="create()">create</button>
+    <button [disabled]="!entityForm.form.valid" class="btn btn-primary" (click)="create()">create</button>
 </form>

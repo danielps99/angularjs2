@@ -1,4 +1,4 @@
-import { AppRouteModule } from './app.route.module';
+import { AppRouteModule } from './app-route/app-route.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';

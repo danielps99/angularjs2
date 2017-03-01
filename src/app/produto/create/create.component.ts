@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
@@ -20,7 +21,8 @@ export class CreateComponent {
   title = 'Criar produto';
   entity: any = this.initEntity();
 
-  constructor(private toastr: ToastsManager, private vRef: ViewContainerRef, private produtoService: ProdutoService, private categoriaService: CategoriaService) {
+  constructor(private router: Router, private toastr: ToastsManager, private vRef: ViewContainerRef, 
+    private produtoService: ProdutoService, private categoriaService: CategoriaService) {
     this.toastr.setRootViewContainerRef(vRef);
   }
 
@@ -28,11 +30,11 @@ export class CreateComponent {
     text$
       .debounceTime(150).distinctUntilChanged()
       .switchMap(parameter => {
-        if (parameter == "") {
+        if (parameter === '') {
           return [];
         }
-        return this.categoriaService.findByParameter(parameter)
-      });
+        return this.categoriaService.findByParameter(parameter);
+      })
 
   inputFormatter(categoria: any) {
     return categoria.descricao;
@@ -52,13 +54,16 @@ export class CreateComponent {
 
     this.produtoService.create(command).subscribe(data => {
       this.toastr.success(`${data.json().descricao} salvo com sucesso!`);
-      this.entity = this.initEntity();
+      // this.router.navigate(['produto/list']);
+      //this.entity = this.initEntity();
+      this.router.navigate(['produto/create']);
     });
   }
 
   private initEntity() {
     return {
-      descricao: ''
+      descricao: '',
+      categoria: ''
     };
   }
 }
