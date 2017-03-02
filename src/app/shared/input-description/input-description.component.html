@@ -1,21 +1,16 @@
- <!--<div class="form-group">
-        <label for="descricao" class="control-label">descricao</label>
-        <input class="form-control" type="text" [(ngModel)]="entity.descricao" required minlength="4" maxlength="24" name="descricao"
-            #descricao="ngModel">
+<div class="form-group">
+    <label for="descricao" class="control-label">{{label}}</label>
+    <input class="form-control" type="text" [(ngModel)]="value" minlength={{minLength}} maxlength={{maxLength}} name={{name}}
+        #captorErro="ngModel" required="{{isRequired}}" (keyup)="keyUp($event)">
+</div>
+<div *ngIf="captorErro.errors && (captorErro.dirty || captorErro.touched)" class="alert alert-danger">
+    <div [hidden]="!captorErro.errors.required">
+        Campo {{label}} é obrigatório.
     </div>
-    <div *ngIf="descricao.errors && (descricao.dirty || descricao.touched)" class="alert alert-danger">
-        <div [hidden]="!descricao.errors.required">
-            descricao is required
-        </div>
-        <div [hidden]="!descricao.errors.minlength">
-            descricao must be at least 4 characters long.
-        </div>
-        <div [hidden]="!descricao.errors.maxlength">
-            descricao cannot be more than 24 characters long.
-        </div>
-    </div>-->
-
-     <div class="form-group">
-        <label for="descricao" class="control-label">descricao no componente input-description</label>
-        <input class="form-control" type="text" required minlength="4" maxlength="24" name="descricao">
+    <div [hidden]="!captorErro.errors.minlength">
+        {{label}} deve ter no mínimo {{minLength}} letras.
     </div>
+    <div [hidden]="!captorErro.errors.maxlength">
+        {{label}} deve ter máximo {{maxLength}} letras.
+    </div>
+</div>

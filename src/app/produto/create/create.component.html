@@ -1,42 +1,21 @@
 <h2>{{title}}</h2>
-
 <form name="form" role="form" #entityForm="ngForm">
-
-    <div class="form-group">
-        <label for="descricao" class="control-label">descricao</label>
-        <input class="form-control" type="text" [(ngModel)]="entity.descricao" required minlength="4" maxlength="24" name="descricao"
-            #descricao="ngModel">
-    </div>
-    <div *ngIf="descricao.errors && (descricao.dirty || descricao.touched)" class="alert alert-danger">
-        <div [hidden]="!descricao.errors.required">
-            descricao is required
+    <input-description (output)="entity.descricao = $event" label="Descrição" name="descricao" isRequired="true" maxLenght="25"
+        minLength="5"></input-description>
+        <div class="form-group">
+            <label for="categoria" class="control-label">Categoria</label>
+            <input name="categoria" type="text" class="form-control" [(ngModel)]="entity.categoria" [inputFormatter]="inputFormatter"
+                [resultFormatter]="resultFormatter" [ngbTypeahead]="findTerm" placeholder="Escolha categoria" required #categoria="ngModel"
+            />
         </div>
-        <div [hidden]="!descricao.errors.minlength">
-            descricao must be at least 4 characters long.
+        <div *ngIf="categoria.errors && (categoria.dirty || categoria.touched)" class="alert alert-danger">
+            <div [hidden]="!categoria.errors.required">
+                categoria is required
+            </div>
         </div>
-        <div [hidden]="!descricao.errors.maxlength">
-            descricao cannot be more than 24 characters long.
+        <div class="form-group">
+            <label for="preco" class="control-label">preço</label>
+            <input name="preco" class="form-control" type="text" [(ngModel)]="entity.preco">
         </div>
-    </div>
-
-    <div class="form-group">
-        <label for="categoria" class="control-label">Categoria</label>
-        <input name="categoria" type="text" class="form-control" [(ngModel)]="entity.categoria" [inputFormatter]="inputFormatter"
-            [resultFormatter]="resultFormatter" [ngbTypeahead]="findTerm" placeholder="Escolha categoria" required #categoria="ngModel"
-        />
-    </div>
-    <div *ngIf="categoria.errors && (categoria.dirty || categoria.touched)" class="alert alert-danger">
-        <div [hidden]="!categoria.errors.required">
-            categoria is required
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="preco" class="control-label">preço</label>
-        <input name="preco" class="form-control" type="text" [(ngModel)]="entity.preco">
-    </div>
-
-    <button [disabled]="!entityForm.form.valid" class="btn btn-primary" (click)="create()">create</button>
-
-    <input-description></input-description>
+        <button [disabled]="!entityForm.form.valid" class="btn btn-primary" (click)="create()">create</button>
 </form>

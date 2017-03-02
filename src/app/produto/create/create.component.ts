@@ -21,8 +21,7 @@ export class CreateComponent {
   title = 'Criar produto';
   entity: any = this.initEntity();
 
-  constructor(private router: Router, private toastr: ToastsManager, private vRef: ViewContainerRef, 
-    private produtoService: ProdutoService, private categoriaService: CategoriaService) {
+  constructor(private router: Router, private toastr: ToastsManager, private vRef: ViewContainerRef, private produtoService: ProdutoService, private categoriaService: CategoriaService) {
     this.toastr.setRootViewContainerRef(vRef);
   }
 
@@ -55,7 +54,7 @@ export class CreateComponent {
     this.produtoService.create(command).subscribe(data => {
       this.toastr.success(`${data.json().descricao} salvo com sucesso!`);
       // this.router.navigate(['produto/list']);
-      //this.entity = this.initEntity();
+      // this.entity = this.initEntity();
       this.router.navigate(['produto/create']);
     });
   }
