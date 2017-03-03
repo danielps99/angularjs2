@@ -4,7 +4,7 @@
 
     <div class="form-group">
         <label for="descricao" class="control-label">descricao</label>
-        <input class="form-control" type="text" [(ngModel)]="entity.descricao" required minlength="4" maxlength="24" name="descricao"
+        <input [showError]="descricao" class="form-control" type="text" [(ngModel)]="entity.descricao" required minlength="4" maxlength="24" name="descricao"
             #descricao="ngModel">
     </div>
     <div *ngIf="descricao.errors && (descricao.dirty || descricao.touched)" class="alert alert-danger">
