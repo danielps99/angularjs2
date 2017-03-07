@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'input-description',
@@ -8,16 +8,12 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angu
 export class InputDescriptionComponent {
 
   @Output('output') mudouValor = new EventEmitter();
-  @Input('input') value: number;
+  @Input('input') set value(inputValue: String) {
+    this.mudouValor.emit(inputValue);
+  }
   @Input() label: string;
   @Input() name: string;
   @Input() minLength = 3;
   @Input() maxLength = 127;
   @Input() isRequired = false;
-
-  constructor() { }
-
-  keyUp(event) {
-    this.mudouValor.emit(this.value);
-  }
 }

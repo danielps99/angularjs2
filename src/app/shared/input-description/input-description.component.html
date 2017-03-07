@@ -1,7 +1,7 @@
 <div class="form-group">
     <label for="descricao" class="control-label">{{label}}</label>
     <input class="form-control" type="text" [(ngModel)]="value" minlength={{minLength}} maxlength={{maxLength}} name={{name}}
-        #captorErro="ngModel" required="{{isRequired}}" (keyup)="keyUp($event)">
+        #captorErro="ngModel" required="{{isRequired}}">
 </div>
 <div *ngIf="captorErro.errors && (captorErro.dirty || captorErro.touched)" class="alert alert-danger">
     <div [hidden]="!captorErro.errors.required">
