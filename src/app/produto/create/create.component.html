@@ -1,7 +1,9 @@
 <h2>{{title}}</h2>
 <form name="form" role="form" #entityForm="ngForm">
     <input-description (output)="entity.descricao = $event" label="Descrição" name="descricao" isRequired="true" maxLenght="25"
-        minLength="5"></input-description>
+        minLength="5" (error)="descricao = $event"></input-description>
+
+        ngModel.errors descricao: {{descricao?.errors | json}}
         <div class="form-group">
             <label for="categoria" class="control-label">Categoria</label>
             <input name="categoria" type="text" class="form-control" [(ngModel)]="entity.categoria" [inputFormatter]="inputFormatter"

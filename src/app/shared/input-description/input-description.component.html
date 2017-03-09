@@ -1,16 +1,16 @@
 <div class="form-group">
     <label for="descricao" class="control-label">{{label}}</label>
     <input class="form-control" type="text" [(ngModel)]="value" minlength={{minLength}} maxlength={{maxLength}} name={{name}}
-        #captorErro="ngModel" required="{{isRequired}}">
+        #ngModelError="ngModel" required="{{isRequired}}">
 </div>
-<div *ngIf="captorErro.errors && (captorErro.dirty || captorErro.touched)" class="alert alert-danger">
-    <div [hidden]="!captorErro.errors.required">
+<div *ngIf="ngModelError.errors && (ngModelError.dirty || ngModelError.touched)" class="alert alert-danger">
+    <div [hidden]="!ngModelError.errors.required">
         Campo {{label}} é obrigatório.
     </div>
-    <div [hidden]="!captorErro.errors.minlength">
+    <div [hidden]="!ngModelError.errors.minlength">
         {{label}} deve ter no mínimo {{minLength}} letras.
     </div>
-    <div [hidden]="!captorErro.errors.maxlength">
+    <div [hidden]="!ngModelError.errors.maxlength">
         {{label}} deve ter máximo {{maxLength}} letras.
     </div>
 </div>

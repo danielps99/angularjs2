@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'input-description',
@@ -7,9 +8,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class InputDescriptionComponent {
 
+  @ViewChild('ngModelError') ngModelError: NgModel;
   @Output('output') mudouValor = new EventEmitter();
+  @Output('error') eventError = new EventEmitter();
   @Input('input') set value(inputValue: String) {
     this.mudouValor.emit(inputValue);
+    this.eventError.emit(this.ngModelError);
   }
   @Input() label: string;
   @Input() name: string;
